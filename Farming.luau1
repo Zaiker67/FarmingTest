@@ -65,7 +65,7 @@ local function isWhitelisted()
 end
 
 if not isWhitelisted() then
-    LocalPlayer:Kick("Sa bawat tangina mo merong pukenangina ka!")
+    LocalPlayer:Kick("Pukinanginamo nagbayad kaba sakin?!")
     return
 end
 
@@ -1732,9 +1732,9 @@ function equipPetsByName(name)
     end
 end
 
-tabs.other:AddLabel("Equip Rep Pets")
+tabs.other2:AddLabel("Equip Rep Pets")
 
-tabs.other:AddButton("Equip Best Rep Pets", function()
+tabs.other2:AddButton("Equip Best Rep Pets", function()
     equipBestFarmingPets()
 end)
 
