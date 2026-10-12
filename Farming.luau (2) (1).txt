@@ -290,7 +290,7 @@ deleteBodyMovementScript()
 services.muscleEvent = lp.player:WaitForChild("muscleEvent")
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/TryHarderDeobfuscatingHAHAHAlol/libraryvariations/refs/heads/main/Fastfarminglibrary.lua", true))()
-local silence = library:AddWindow("M14EBR || PRIVATE SCRIPT || FAST FARMING || BY KENZOUU", {
+local silence = library:AddWindow("M14EBR || Paid Version - Fast Farming", {
     title_bar = {Color3.fromRGB(255, 120, 0), Color3.fromRGB(0, 0, 0), Color3.fromRGB(0, 0, 0)},
     title_bar_transparency = 0.2,
     background = {Color3.fromRGB(40, 40, 40), Color3.fromRGB(0, 0, 0), Color3.fromRGB(255, 120, 0)},
@@ -1320,27 +1320,6 @@ tabs.strength2:AddLabel("For me, 20-40 works the best. Try around!")
 
 -- Other Tab
 
-function unequipPets()
-    for _, folder in pairs(lp.player.petsFolder:GetChildren()) do
-        if folder:IsA("Folder") then
-            for _, pet in pairs(folder:GetChildren()) do
-                services.replicatedstorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
-            end
-        end
-    end
-    task.wait(0.1)
-end
-
-function equipPetsByName(name)
-    unequipPets()
-    task.wait(0.01)
-    for _, pet in pairs(lp.player.petsFolder.Unique:GetChildren()) do
-        if pet.Name == name then
-            services.replicatedstorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
-        end
-    end
-end
-
 tabs.other.eggsowned = tabs.other:AddLabel("Protein Eggs: 0")
 tabs.other.eggsowned.TextSize = 14
 
@@ -1730,7 +1709,94 @@ tabs.other:AddButton("Hallowed Pullups",function()
 end)
 
 
+-- Other2 Tab
+
+function unequipPets()
+    for _, folder in pairs(lp.player.petsFolder:GetChildren()) do
+        if folder:IsA("Folder") then
+            for _, pet in pairs(folder:GetChildren()) do
+                services.replicatedstorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
+            end
+        end
+    end
+    task.wait(0.1)
+end
+
+function equipPetsByName(name)
+    unequipPets()
+    task.wait(0.01)
+    for _, pet in pairs(lp.player.petsFolder.Unique:GetChildren()) do
+        if pet.Name == name then
+            services.replicatedstorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
+        end
+    end
+end
+
+tabs.other:AddLabel("Equip Rep Pets")
+
+tabs.other:AddButton("Equip Best Rep Pets", function()
+    equipBestFarmingPets()
+end)
+
+tabs.other2:AddButton("Common Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Common Boss Pet")
+end)
+
+tabs.other2:AddButton("Rare Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Rare Boss Pet")
+end)
+
+tabs.other2:AddButton("Epic Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Epic Boss Pet")
+end)
+
+tabs.other2:AddButton("Legendary Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Legendary Boss Pet")
+end)
+
+tabs.other2:AddButton("Mythic Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Mythic Boss Pet")
+end)
+
+tabs.other2:AddButton("Rainbow Boss Pet", function()
+    unequipPets()
+    equipPetsByName("Rainbow Boss Pet")
+end)
+
+tabs.other2:AddLabel("~~~~~~~~~~")
+
+tabs.other2:AddLabel("Equip Pack Pets")
+
+tabs.other2:AddButton("Swift Samurai", function()
+    unequipPets()
+    equipPetsByName("Swift Samurai")
+end)
+
+tabs.other2:AddButton("Tribal Overlord", function()
+    unequipPets()
+    equipPetsByName("Tribal Overlord")
+end)
+
+tabs.other2:AddButton("Omega Overlord", function()
+    unequipPets()
+    equipPetsByName("Omega Overlord")
+end)
+
+tabs.other2:AddButton("Titanium Hydra", function()
+    unequipPets()
+    equipPetsByName("Titanium Hydra")
+end)
+
+
+tabs.other2:AddLabel("~~~~~~~~~~")
+
 tabs.other2:AddLabel("Performance")
+
 tabs.other2:AddButton("Full Optimization", function()
     tabs.other.playerGui = lp.player:WaitForChild("PlayerGui")
 
@@ -1825,10 +1891,6 @@ end
     tabs.other.darkenSky()
     services.replicatedstorage.shared.assets.ui.strengthFrame:Destroy()
     services.replicatedstorage.shared.assets.ui.durabilityFrame:Destroy()
-end)
-
-tabs.other:AddButton("Equip Rep Pets", function()
-    equipBestFarmingPets()
 end)
 
 tabs.info:Show()
