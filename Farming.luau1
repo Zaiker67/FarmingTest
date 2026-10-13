@@ -1948,7 +1948,7 @@ local tiktokBtn = tabs.info:AddButton("📋 COPY TIKTOK LINK", function()
 end)
 
 -- [[ STATUS SECTION ]]
-tabs info:AddLabel("💠 Script Status: [ ONLINE ]")
+tabs.info:AddLabel("💠 Script Status: [ ONLINE ]")
 tabs.info:AddLabel("🚀 PAID VERSION: 1.0")
 createSeparator()
 
