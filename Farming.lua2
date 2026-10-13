@@ -1711,23 +1711,23 @@ end)
 
 -- Other2 Tab
 
-local function unequipPets()
-    for _, folder in pairs(Player.petsFolder:GetChildren()) do
+function unequipPets()
+    for _, folder in pairs(lp.player.petsFolder:GetChildren()) do
         if folder:IsA("Folder") then
             for _, pet in pairs(folder:GetChildren()) do
-                ReplicatedStorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
+                services.replicatedstorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
             end
         end
     end
     task.wait(0.1)
 end
 
-local function equipPetsByName(name)
+function equipPetsByName(name)
     unequipPets()
     task.wait(0.01)
-    for _, pet in pairs(Player.petsFolder.Unique:GetChildren()) do
+    for _, pet in pairs(lp.player.petsFolder.Unique:GetChildren()) do
         if pet.Name == name then
-            ReplicatedStorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
+            services.replicatedstorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
         end
     end
 end
