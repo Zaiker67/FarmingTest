@@ -1725,7 +1725,7 @@ end
 function equipPetsByName(name)
     unequipPets()
     task.wait(0.01)
-    for _, pet in pairs(lp.player.petsFolder.Advanced,Rare,Unique:GetChildren()) do
+    for _, pet in pairs(lp.player.petsFolder.Unique:GetChildren()) do
         if pet.Name == name then
             services.replicatedstorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
         end
