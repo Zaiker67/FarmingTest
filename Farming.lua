@@ -1734,11 +1734,6 @@ end
 
 tabs.other2:AddLabel("Equip Rep Pets")
 
-tabs.other2:AddButton("Equip Best Rep Pets", function()
-    equipBestFarmingPets()
-end)
-
-
 tabs.other2:AddButton("Common Boss Pet", function()
     unequipPets()
     equipPetsByName("Common Boss Pet")
