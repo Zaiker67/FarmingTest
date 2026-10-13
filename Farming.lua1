@@ -1711,23 +1711,23 @@ end)
 
 -- Other2 Tab
 
-function unequipPets()
-    for _, folder in pairs(lp.player.petsFolder:GetChildren()) do
+local function unequipPets()
+    for _, folder in pairs(Player.petsFolder:GetChildren()) do
         if folder:IsA("Folder") then
             for _, pet in pairs(folder:GetChildren()) do
-                services.replicatedstorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
+                ReplicatedStorage.rEvents.equipPetEvent:FireServer("unequipPet", pet)
             end
         end
     end
     task.wait(0.1)
 end
 
-function equipPetsByName(name)
+local function equipPetsByName(name)
     unequipPets()
     task.wait(0.01)
-    for _, pet in pairs(lp.player.petsFolder.Unique:GetChildren()) do
+    for _, pet in pairs(Player.petsFolder.Unique:GetChildren()) do
         if pet.Name == name then
-            services.replicatedstorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
+            ReplicatedStorage.rEvents.equipPetEvent:FireServer("equipPet", pet)
         end
     end
 end
@@ -1904,29 +1904,86 @@ end
 end)
 
 tabs.info:Show()
-tabs.info:AddLabel("")
-tabs.info.VersionLabel = tabs.info:AddLabel("          M14EBR | PRIVATE [V1.0.0]")
-tabs.info.VersionLabel.TextSize = 31
-tabs.info.VersionLabel.Font = Enum.Font.LuckiestGuy
-tabs.info:AddLabel("")
-tabs.info:AddLabel("Close Friends:").TextSize = 30
-tabs.info.VersionLabel = tabs.info:AddLabel("XxSOE_GaGAxX")
-tabs.info.VersionLabel.TextSize = 17
-tabs.info.VersionLabel.Font = Enum.Font.Bangers
-tabs.info.VersionLabel = tabs.info:AddLabel("AVX_santos")
-tabs.info.VersionLabel.TextSize = 17
-tabs.info.VersionLabel.Font = Enum.Font.Bangers
-tabs.info.VersionLabel = tabs.info:AddLabel("ITSME_KIAN")
-tabs.info.VersionLabel.TextSize = 17
-tabs.info.VersionLabel.Font = Enum.Font.Bangers
-tabs.info:AddLabel("")
-tabs.info:AddLabel("If you encountered any problem, PM/DM me on TikTok")
-tabs.info:AddLabel("Tiktok: Kenzouu Warfreakkk!")
-tabs.info:AddButton("Copy Tiktok Link", function()
-	if setclipboard then
-		setclipboard("https://tiktok.com/officialkenzouu")
-		game.StarterGui:SetCore("SendNotification", {Title = "Link Copied!", Text = "Pa Follow na din ako sa TikTok", Duration = 3})
-	else
-		game.StarterGui:SetCore("SendNotification", {Title = "Error!", Text = "Clipboard not Supported.", Duration = 3})
-	end
+-- [[ DESIGN SETTINGS ]]
+local function createSeparator()
+    tabs.info:AddLabel("━━━━━━━━━━━━━━━━━━━━━━━━━━")
+end
+
+-- [[ HEADER SECTION ]]
+tabs.info:AddLabel("M14EBR | PAID").TextSize = 25
+createSeparator()
+
+-- [[ DEV CREDITS WITH RAINBOW EFFECT ]]
+local devLabel = tabs.info:AddLabel("Developer: PrimeKenzouu")
+devLabel.TextSize = 22
+
+-- Rainbow Script for Owner Label
+task.spawn(function()
+    while task.wait() do
+        local hue = tick() % 5 / 5 -- Bilis ng rainbow (5 seconds cycle)
+        devLabel.TextColor3 = Color3.fromHSV(hue, 0.8, 1)
+    end
+end)
+
+tabs.info:AddLabel("✨ Specialized Fast Farming Script ✨").TextSize = 14
+createSeparator()
+
+-- [[ TIKTOK SECTION ]]
+tabs.info:AddLabel("🔗 OFFICIAL TIKTOK ACCOUNT")
+local tiktokBtn = tabs.info:AddButton("📋 COPY TIKTOK LINK", function()
+    local link = "https://www.tiktok.com/@officialkenzouu"
+    
+    if setclipboard then
+        setclipboard(link)
+        -- Fancy Notification
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Link Copied!";
+            Text = "Pa Follow na rin ako sa Tiktok.";
+            Icon = "rbxassetid://6034320095"; -- Success Icon
+            Duration = 5;
+        })
+    else
+        game:GetService("TestService"):Message("Clipboard not supported.")
+    end
+end)
+
+-- [[ STATUS SECTION ]]
+tabs info:AddLabel("💠 Script Status: [ ONLINE ]")
+tabs.info:AddLabel("🚀 PAID VERSION: 1.0")
+createSeparator()
+
+-- [[ FOOTER SECTION - THE "ON DOWN" ANIMATION ]]
+local wLabel = tabs.info:AddLabel("🔥 M14EBR ON TOP 🔥")
+wLabel.TextSize = 35
+wLabel.Font = Enum.Font.LuckiestGuy
+
+-- Pulse & Rainbow Animation for the Footer
+task.spawn(function()
+    local baseSize = 35
+    while task.wait(0.05) do
+        -- Rainbow effect
+        local hue = tick() % 3 / 3
+        wLabel.TextColor3 = Color3.fromHSV(hue, 1, 1)
+        
+        -- Pulsing effect (Lalaki at liliit ng konti)
+        local pulse = math.sin(tick() * 5) * 3
+        wLabel.TextSize = baseSize + pulse
+    end
+end)
+
+-- [[ ADDITIONAL DECORATIONS ]]
+tabs.info:AddLabel("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+tabs.info:AddLabel("💎 THANK YOU FOR USING MY SCRIPT 💎").TextSize = 12
+
+-- Typewriter Effect sa status
+local statusLabel = tabs.info:AddLabel("Loading System...")
+task.spawn(function()
+    local text = "System Online. Enjoy Farming!"
+    while true do
+        for i = 1, #text do
+            statusLabel.Text = "> " .. string.sub(text, 1, i) .. "_"
+            task.wait(0.1)
+        end
+        task.wait(2)
+    end
 end)
